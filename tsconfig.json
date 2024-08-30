@@ -16,6 +16,16 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@interfaces/*": ["src/interfaces/*"],
+      "@constants/*": ["src/constants/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@database/*": ["src/database/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@routers/*": ["src/routers/*"],
+      "@setup/*": ["src/setup/*"],
+    },
   }
 }
