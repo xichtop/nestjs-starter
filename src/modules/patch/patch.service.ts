@@ -25,12 +25,16 @@ export class PatchService {
   //   }
   // }
 
-  // async findAll(): Promise<IPatch[]> {
-  //   return this.patchModel.find().exec();
-  // }
-
   createPatch(createPatchDto: CreatePatchDto) {
     const newPatch = new this.patchModel(createPatchDto);
     return newPatch.save();
+  }
+
+  findAll() {
+    return this.patchModel.find();
+  }
+
+  getPatchByID(id: string) {
+    return this.patchModel.findById(id);
   }
 }
