@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreatePatchDto {
   @IsNotEmpty()
@@ -6,9 +6,11 @@ export class CreatePatchDto {
   name: string;
 
   @IsString()
+  @IsOptional()
   description?: string;
 
   @IsString()
+  @IsOptional()
   version?: string;
 
   @IsNotEmpty()
@@ -24,11 +26,14 @@ export class CreatePatchDto {
   software: string;
 
   @IsString()
+  @IsOptional()
   author?: string;
 
   @IsDate()
+  @IsOptional()
   createdAt?: Date;
 
   @IsDate()
+  @IsOptional()
   updatedAt?: Date;
 }
