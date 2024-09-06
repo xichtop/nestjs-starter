@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, Patch, Post } from '@nestjs/common';
 import { PatchService } from './patch.service';
 import { CreatePatchDto } from '@database/dtos/create-patch.dto';
 import mongoose from 'mongoose';
@@ -43,12 +43,27 @@ export class PatchController {
       throw new HttpException('Invalid ID', 404);
     }
 
-    const findPatch = await this.patchService.getPatchByID(id);
-    if (!findPatch) {
+    const updatePatch = await this.patchService.updatePatchByID(id, updatePatchDto);
+    if (!updatePatch) {
       throw new HttpException('Patch not found', 404);
     }
 
-    return this.patchService.patchPatchByID(id, updatePatchDto);
+    return updatePatch;
+  }
+
+  @Delete(':id')
+  async deletePatch(@Param('id') id: string) {
+    const isValidID = mongoose.Types.ObjectId.isValid(id);
+    if (!isValidID) {
+      throw new HttpException('Invalid ID', 404);
+    }
+
+    const deletePatch = await this.patchService.deletePatchByID(id);
+    if (!deletePatch) {
+      throw new HttpException('Patch not found', 404);
+    }
+
+    return deletePatch;
   }
 
 }

@@ -14,17 +14,6 @@ export class PatchService {
   constructor(
     @InjectModel(Patch.name) private patchModel: Model<Patch>
   ) {}
-  // static async list() {
-  //   try {
-  //     const patches = await patchSchema.find({});
-
-  //     return new SuccessResponseModel(patches);
-
-  //   } catch (error) {
-
-  //     throw new ErrorResponseModel(null, 'Unexpected error occurred!')
-  //   }
-  // }
 
   createPatch(createPatchDto: CreatePatchDto) {
     const newPatch = new this.patchModel(createPatchDto);
@@ -39,7 +28,11 @@ export class PatchService {
     return this.patchModel.findById(id);
   }
 
-  patchPatchByID(id: string, updatePatchDto: UpdatePatchDto) {
+  updatePatchByID(id: string, updatePatchDto: UpdatePatchDto) {
     return this.patchModel.findByIdAndUpdate(id, updatePatchDto);
+  }
+
+  deletePatchByID(id: string) {
+    return this.patchModel.findByIdAndDelete(id);
   }
 }
